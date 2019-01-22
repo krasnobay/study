@@ -14,26 +14,20 @@ module Exercise
       # Написать свою функцию my_map
       def my_map
         res = MyArray.new
-        for e in self
-          res.push yield(e)
-        end
+        self.my_each { |e| res.push yield(e) }
         res
       end
 
       # Написать свою функцию my_compact
       def my_compact
         res = MyArray.new
-        for e in self
-          res.push(e) unless e.nil?
-        end
+        self.my_each { |e| res.push e unless e.nil? }
         res
       end
 
       # Написать свою функцию my_reduce
       def my_reduce(acc = nil)
-        for e in self
-          acc = acc ? yield(acc, e) : e
-        end
+        self.my_each { |e| acc = acc ? yield(acc, e) : e }
         acc
       end
     end
