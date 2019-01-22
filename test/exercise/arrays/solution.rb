@@ -2,12 +2,18 @@ module Exercise
   module Arrays
     class << self
       def replace(array)
-        max = array.max
-        array.map { |e| e > 0 ? max : e }
+        m = max array
+        array.map { |e| e > 0 ? m : e }
       end
 
       def search(array, query)
         bin_search array, query, 0, array.length - 1
+      end
+
+      def max array
+        buf = array[0]
+        array.each { |e| buf = e if e > buf }
+        buf
       end
 
       def bin_search(array, query, left, right)
